@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="index.js"></script>
+    <meta name="description" content="this is a student online portal"> 
+    <meta name="author" name="ABDUL LATIF YUNUS">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css" type="text/css">
+<title>students form</title>
+</head>
+<body>
+  <style>
+
+/* Global Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+h1, h2 {
+  font-weight: bold;
+  color: #00698f;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+/* Form Styles */
+
+form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type="submit"], button[type="reset"] {
+  width: 100px;
+  height: 40px;
+  margin-right: 10px;
+  background-color: #00698f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover, button[type="reset"]:hover {
+  background-color: #00567f;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  form {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  form {
+    padding: 10px;
+  }
+}
+
+    </style>
+    <script>
+
+// Get elements
+const form = document.querySelector('form');
+const firstNameInput = document.querySelector('#firstname');
+const surnameInput = document.querySelector('#surname');
+const passwordInput = document.querySelector('#password');
+const messageInput = document.querySelector('#message');
+const submitButton = document.querySelector('button[type="submit"]');
+const resetButton = document.querySelector('button[type="reset"]');
+
+// Add event listeners
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // Validate form data
+  if (validateForm()) {
+    // Submit form data
+    submitForm();
+  }
+});
+
+resetButton.addEventListener('click', () => {
+  // Reset form fields
+  resetForm();
+});
+
+// Validate form data
+function validateForm() {
+  const firstName = firstNameInput.value.trim();
+  const surname = surnameInput.value.trim();
+  const password = passwordInput.value.trim();
+  const message = messageInput.value.trim();
+
+  if (firstName === '') {
+    alert('Please enter your first name');
+    return false;
+  }
+
+  if (surname === '') {
+    alert('Please enter your surname');
+    return false;
+  }
+
+  if (password === '') {
+    alert('Please enter your password');
+    return false;
+  }
+
+  if (message === '') {
+    alert('Please enter a message');
+    return false;
+  }
+
+  return true;
+}
+
+// Submit form data
+function submitForm() {
+  const formData = new FormData(form);
+  // Send form data to server using AJAX or fetch API
+  fetch('/submit', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
+}
+
+// Reset form fields
+function resetForm() {
+  firstNameInput.value = '';
+  surnameInput.value = '';
+  passwordInput.value = '';
+  messageInput.value = '';
+}
+    </script>
+    <h1>STUDENTS ONLINE PORTAL:</h1>
+    <P>As a student of this noble institution. Please kindly fill up this forms to be able to be among the best team of this institution. The forms are as follows:</P>
+    <br>
+    <hr>
+    <form action="http://www.google.com/ target_blank"></form>
+    <label for="firstname">FirstName:</label>
+    <input type="text" name="firstname" id="firstname" placeholder="ABDUL" required>
+    <P>
+    <label for="Surname">SurName:</label>
+    <input type="surname" name="surname" id="surname" placeholder="YUNUS" required>
+    </P>
+    <p>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password"> 
+    </p>
+    <p><!-- our content -->
+        <textarea name="message" id="message" placeholder="message us">Message Us</textarea>
+       </p>
+       <br><br>
+    <button type="submit">submit</button>
+    <button type="Reset">Reset</button>
+    <hr>
+
+
+
+
+  </<form>  
+</body>
+
+
+
+
+
+
+
+
+</html>
